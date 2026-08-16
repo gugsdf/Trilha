@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilhas Digitais — Curso de Inclusão Digital e Programação</title>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1E40AF;
+            --primary-light: #DBEAFE;
+            --accent: #F59E0B;
+            --accent-dark: #D97706;
+            --dark: #0F172A;
+            --dark-2: #1E293B;
+            --gray: #64748B;
+            --gray-light: #94A3B8;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --level1: #10B981;
+            --level2: #2563EB;
+            --level3: #8B5CF6;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 0 40px;
+            transition: all 0.3s;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .navbar-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-logo span {
+            font-weight: 800;
+            font-size: 1.2em;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+
+        .navbar-links a:hover {
+            color: var(--primary);
+        }
+
+        .navbar-cta {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .navbar-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #2563EB 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 40px 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15), transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 3.6em;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero .subtitle {
+            font-size: 1.25em;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #FBBF24;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo-card svg {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 20px;
+        }
+
+        .logo-card h2 {
+            color: white;
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat .num {
+            font-size: 2em;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .hero-stat .label {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            padding: 100px 40px;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 24px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            font-size: 2.6em;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--gray);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ========== TEMA ========== */
+        .tema {
+            background: var(--white);
+        }
+
+        .tema-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 48px;
+            align-items: center;
+        }
+
+        .tema-text p {
+            font-size: 1.05em;
+            color: var(--dark-2);
+            margin-bottom: 16px;
+        }
+
+        .tema-impact {
+            background: linear-gradient(135deg, var(--primary), #3B82F6);
+            border-radius: var(--radius);
+            padding: 40px;
+            color: white;
+        }
+
+        .tema-impact h3 {
+            font-size: 1.5em;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .tema-impact .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .tema-impact .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .tema-impact .stat-item .num {
+            font-size: 1.8em;
+            font-weight: 900;
+        }
+
+        .tema-impact .stat-item .desc {
+            font-size: 0.82em;
+            opacity: 0.8;
+        }
+
+        /* ========== OBJETIVO ========== */
+        .objetivo {
+            background: var(--light);
+        }
+
+        .objetivo-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .obj-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        .obj-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .obj-card .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .obj-card:nth-child(1) .icon {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .obj-card:nth-child(2) .icon {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .obj-card:nth-child(3) .icon {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .obj-card:nth-child(1) {
+            border-top-color: var(--level1);
+        }
+
+        .obj-card:nth-child(2) {
+            border-top-color: var(--level2);
+        }
+
+        .obj-card:nth-child(3) {
+            border-top-color: var(--level3);
+        }
+
+        .obj-card h3 {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .obj-card p {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+
+        /* ========== RESSENHA ========== */
+        .ressenha {
+            background: var(--dark);
+            color: white;
+        }
+
+        .ressenha .section-label {
+            color: var(--accent);
+        }
+
+        .ressenha .section-label::before {
+            background: var(--accent);
+        }
+
+        .ressenha .section-title {
+            color: white;
+        }
+
+        .ressenha .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .ressenha-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .ressenha-text {
+            font-size: 1.05em;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .ressenha-text p {
+            margin-bottom: 16px;
+        }
+
+        .ressenha-sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+
+        .ressenha-sidebar h4 {
+            font-size: 1.05em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .ressenha-sidebar ul {
+            list-style: none;
+        }
+
+        .ressenha-sidebar li {
+            padding: 10px 0 10px 28px;
+            position: relative;
+            font-size: 0.92em;
+            color: rgba(255, 255, 255, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ressenha-sidebar li:last-child {
+            border: none;
+        }
+
+        .ressenha-sidebar li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* ========== TRILHA DE APRENDIZADO (timeline) ========== */
+        .trilha {
+            background: var(--white);
+        }
+
+        .trilha-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 48px;
+            position: relative;
+        }
+
+        .trilha-timeline::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--level1), var(--level2), var(--level3));
+            border-radius: 2px;
+        }
+
+        .trilha-level {
+            text-align: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .trilha-dot {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-weight: 900;
+        }
+
+        .trilha-level:nth-child(1) .trilha-dot {
+            background: var(--level1);
+        }
+
+        .trilha-level:nth-child(2) .trilha-dot {
+            background: var(--level2);
+        }
+
+        .trilha-level:nth-child(3) .trilha-dot {
+            background: var(--level3);
+        }
+
+        .trilha-level h3 {
+            font-size: 1.2em;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .trilha-level .sub {
+            color: var(--gray);
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+
+        .trilha-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .trilha-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        .trilha-level:nth-child(1) .trilha-tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--level1);
+        }
+
+        .trilha-level:nth-child(2) .trilha-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--level2);
+        }
+
+        .trilha-level:nth-child(3) .trilha-tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--level3);
+        }
+
+        /* ========== CURSOS ========== */
+        .cursos {
+            background: var(--light);
+        }
+
+        .curso-tabs {
+            display: flex;
+            gap: 12px;
+            margin: 48px 0 32px;
+            flex-wrap: wrap;
+        }
+
+        .curso-tab {
+            padding: 14px 28px;
+            border-radius: 12px;
+            border: 2px solid #E2E8F0;
+            background: white;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .curso-tab:hover {
+            border-color: var(--primary);
+        }
+
+        .curso-tab.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .curso-tab .tab-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .curso-tab:nth-child(1) .tab-dot {
+            background: var(--level1);
+        }
+
+        .curso-tab:nth-child(2) .tab-dot {
+            background: var(--level2);
+        }
+
+        .curso-tab:nth-child(3) .tab-dot {
+            background: var(--level3);
+        }
+
+        .curso-tab .tab-count {
+            background: rgba(0, 0, 0, 0.06);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            color: var(--gray);
+        }
+
+        .curso-tab.active .tab-count {
+            background: rgba(37, 99, 235, 0.15);
+            color: var(--primary);
+        }
+
+        .curso-content {
+            display: none;
+        }
+
+        .curso-content.active {
+            display: block;
+        }
+
+        .curso-header {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            padding: 32px;
+            border-radius: var(--radius);
+            border-left: 5px solid;
+        }
+
+        .curso-header.level1 {
+            background: rgba(16, 185, 129, 0.06);
+            border-color: var(--level1);
+        }
+
+        .curso-header.level2 {
+            background: rgba(37, 99, 235, 0.06);
+            border-color: var(--level2);
+        }
+
+        .curso-header.level3 {
+            background: rgba(139, 92, 246, 0.06);
+            border-color: var(--level3);
+        }
+
+        .curso-header .level-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .curso-header.level1 .level-badge {
+            background: var(--level1);
+        }
+
+        .curso-header.level2 .level-badge {
+            background: var(--level2);
+        }
+
+        .curso-header.level3 .level-badge {
+            background: var(--level3);
+        }
+
+        .curso-header h3 {
+            font-size: 1.4em;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .curso-header p {
+            color: var(--gray);
+            font-size: 0.95em;
+        }
+
+        /* Section dividers inside cursos */
+        .curso-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 32px 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .curso-section-title .sec-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+        }
+
+        .level1 .curso-section-title .sec-icon {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .level2 .curso-section-title .sec-icon {
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .level3 .curso-section-title .sec-icon {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .curso-section-title h4 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .curso-section-title span {
+            font-size: 0.85em;
+            color: var(--gray);
+        }
+
+        /* Aulas */
+        .aula {
+            background: var(--white);
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            transition: all 0.2s;
+        }
+
+        .aula:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .aula-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            user-select: none;
+        }
+
+        .aula-header:hover {
+            background: rgba(0, 0, 0, 0.015);
+        }
+
+        .aula-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1em;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .level1 .aula-num {
+            background: var(--level1);
+        }
+
+        .level2 .aula-num {
+            background: var(--level2);
+        }
+
+        .level3 .aula-num {
+            background: var(--level3);
+        }
+
+        .aula-title {
+            flex: 1;
+        }
+
+        .aula-title h4 {
+            font-size: 1.05em;
+            font-weight: 700;
+        }
+
+        .aula-title span {
+            font-size: 0.82em;
+            color: var(--gray);
+        }
+
+        .aula-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .aula-tag {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .aula-tag.pratica {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-dark);
+        }
+
+        .aula-tag.teoria {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .aula-tag.novo {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+        }
+
+        .aula-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E2E8F0;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .aula.open .aula-toggle {
+            background: var(--primary);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .aula-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .aula.open .aula-body {
+            max-height: 3000px;
+        }
+
+        .aula-body-inner {
+            padding: 0 24px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .aula-topics h5 {
+            font-size: 0.82em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .aula-topics ul {
+            list-style: none;
+        }
+
+        .aula-topics li {
+            padding: 6px 0 6px 22px;
+            position: relative;
+            font-size: 0.92em;
+            color: var(--dark-2);
+            line-height: 1.5;
+        }
+
+        .aula-topics li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .aula-pratica {
+            background: rgba(37, 99, 235, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .aula-pratica h5 {
+            font-size: 0.82em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .aula-pratica p {
+            font-size: 0.92em;
+            color: var(--dark-2);
+        }
+
+        .aula-code {
+            background: var(--dark);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 12px;
+            grid-column: 1 / -1;
+            overflow-x: auto;
+        }
+
+        .aula-code code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.85em;
+            color: #A5F3FC;
+            line-height: 1.7;
+            white-space: pre;
+        }
+
+        .aula-code .comment {
+            color: #6B7280;
+        }
+
+        .aula-code .keyword {
+            color: #C084FC;
+        }
+
+        .aula-code .string {
+            color: #86EFAC;
+        }
+
+        .aula-code .tag-name {
+            color: #F9A8D4;
+        }
+
+        .aula-code .attr {
+            color: #93C5FD;
+        }
+
+        .aula-code .value {
+            color: #86EFAC;
+        }
+
+        .aula-code .prompt-label {
+            color: var(--accent);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+
+            .hero-inner,
+            .tema-grid,
+            .ressenha-content,
+            .aula-body-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .trilha-timeline {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .trilha-timeline::before {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.4em;
+            }
+
+            .section-title {
+                font-size: 1.9em;
+            }
+
+            .objetivo-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="10" fill="#2563EB" />
+                    <path d="M10 28V14l6 7 6-7v14" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="30" cy="14" r="4" fill="#FBBF24" />
+                </svg>
+                <span>Trilhas Digitais</span>
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#tema">Tema</a></li>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#ressenha">Resenha</a></li>
+                <li><a href="#trilha">Trilha</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+            </ul>
+            <a href="#cursos" class="navbar-cta">Começar Agora</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-badge">Do 7º ao 9º Ano — Inclusão Digital + Programação</div>
+                <h1>Do primeiro clique ao <span class="highlight">primeiro programa</span>.</h1>
+                <p class="subtitle">Um curso prático e progressivo que transforma jovens em usuários confiantes,
+                    criativos e preparados para o mundo digital — incluindo lógica, web e Python.</p>
+                <div class="hero-actions">
+                    <a href="#cursos" class="btn-primary">Ver Cursos →</a>
+                    <a href="#trilha" class="btn-secondary">Conhecer a Trilha</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="num">3</div>
+                        <div class="label">Níveis progressivos</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="num">18</div>
+                        <div class="label">Aulas práticas</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="num">13h30</div>
+                        <div class="label">De conteúdo real</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="logo-card">
+                    <svg viewBox="0 0 140 140" fill="none">
+                        <circle cx="70" cy="70" r="65" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+                        <circle cx="70" cy="70" r="50" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+                        <rect x="35" y="30" width="70" height="50" rx="6" stroke="#FBBF24" stroke-width="3" />
+                        <rect x="40" y="35" width="60" height="38" rx="3" fill="rgba(251,191,36,0.1)" />
+                        <line x1="58" y1="80" x2="58" y2="92" stroke="#FBBF24" stroke-width="3" />
+                        <line x1="82" y1="80" x2="82" y2="92" stroke="#FBBF24" stroke-width="3" />
+                        <line x1="50" y1="92" x2="90" y2="92" stroke="#FBBF24" stroke-width="3"
+                            stroke-linecap="round" />
+                        <path d="M62 48l12 8-5 1 2 6-3 1-2-6-4 4z" fill="#FBBF24" />
+                        <rect x="48" y="56" width="6" height="4" rx="1" fill="rgba(251,191,36,0.4)" />
+                        <rect x="57" y="56" width="6" height="4" rx="1" fill="rgba(251,191,36,0.4)" />
+                        <rect x="66" y="56" width="6" height="4" rx="1" fill="rgba(251,191,36,0.4)" />
+                        <path d="M25 110l10-10M35 100l-3 3M35 100l3 3" stroke="#10B981" stroke-width="2"
+                            stroke-linecap="round" />
+                        <path d="M70 110l10-10M80 100l-3 3M80 100l3 3" stroke="#2563EB" stroke-width="2"
+                            stroke-linecap="round" />
+                        <path d="M115 110l10-10M125 100l-3 3M125 100l3 3" stroke="#8B5CF6" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <h2>Trilhas Digitais</h2>
+                    <p>Inclusão Digital + Programação</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMA -->
+    <section class="tema" id="tema">
+        <div class="section-inner">
+            <div class="tema-grid">
+                <div>
+                    <div class="section-label">Tema do Curso</div>
+                    <h2 class="section-title">Inclusão Digital e Pensamento Computacional para Jovens</h2>
+                    <div class="tema-text">
+                        <p>Em um mundo cada vez mais digital, saber usar um computador deixou de ser um diferencial — é
+                            uma <strong>necessidade básica</strong>. E mais do que apenas usar: os jovens precisam
+                            <strong>entender e criar</strong> com tecnologia.</p>
+                        <p>A exclusão digital não é só sobre falta de acesso a dispositivos. É sobre falta de confiança,
+                            conhecimento e capacidade de pensar computacionalmente para resolver problemas reais.</p>
+                        <p>Este curso vai do <strong>primeiro contato com o computador</strong> até a
+                            <strong>programação em Python</strong>, passando por lógica, criação de sites, uso
+                            responsável da internet e inteligência artificial — tudo de forma progressiva e prática.</p>
+                    </div>
+                </div>
+                <div class="tema-impact">
+                    <h3>Por que isso importa</h3>
+                    <p style="opacity: 0.85; margin-bottom: 16px;">A inclusão digital com pensamento computacional é o
+                        fator mais determinante para reduzir desigualdades educacionais.</p>
+                    <div class="stat-row">
+                        <div class="stat-item">
+                            <div class="num">28%</div>
+                            <div class="desc">dos alunos não têm computador em casa</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="num">45%</div>
+                            <div class="desc">das vagas exigem competências digitais</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="num">3x</div>
+                            <div class="desc">mais engajamento com prática real</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="num">70%</div>
+                            <div class="desc">das atividades acadêmicas exigem uso digital</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OBJETIVO -->
+    <section class="objetivo" id="objetivo">
+        <div class="section-inner">
+            <div class="section-label">Objetivo</div>
+            <h2 class="section-title">Formar jovens que não só usam, mas criam tecnologia</h2>
+            <p class="section-subtitle">Cada nível constrói sobre o anterior. Do primeiro clique ao primeiro código —
+                uma progressão natural de aprendizado.</p>
+
+            <div class="objetivo-cards">
+                <div class="obj-card">
+                    <div class="icon">🖥️</div>
+                    <h3>Fundamentos e Lógica (7º)</h3>
+                    <p>Perder o medo do computador, dominar arquivos, navegar com segurança e dar os primeiros passos em
+                        lógica de programação com ferramentas visuais.</p>
+                </div>
+                <div class="obj-card">
+                    <div class="icon">🌐</div>
+                    <h3>Organização e Criação Web (8º)</h3>
+                    <p>Organizar arquivos, dominar e-mail, comunicar-se digitalmente e criar as primeiras páginas web
+                        com HTML e CSS.</p>
+                </div>
+                <div class="obj-card">
+                    <div class="icon">🐍</div>
+                    <h3>Produtividade, Python e IA (9º)</h3>
+                    <p>Dominar o Pacote Office, programar em Python, entender inteligência artificial e aprender a usar
+                        prompts de forma eficaz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESSENHA -->
+    <section class="ressenha" id="ressenha">
+        <div class="section-inner">
+            <div class="section-label">Resenha</div>
+            <h2 class="section-title">Como o curso funciona</h2>
+            <div class="ressenha-content">
+                <div class="ressenha-text">
+                    <p>O <strong>Trilhas Digitais</strong> é um curso de inclusão digital e programação estruturado em
+                        três níveis progressivos, voltado para ingressantes do 7º ao 9º ano. Cada nível corresponde a um
+                        ano escolar e aborda competências cada vez mais avançadas — do básico ao criativo.</p>
+                    <p>A metodologia é baseada em <strong>"aprender fazendo"</strong>: cada aula de 45 minutos reserva
+                        pelo menos metade do tempo para prática supervisionada. Alunos recebem orientações visuais em
+                        infográficos e finalizam cada nível com uma pergunta de verificação.</p>
+                    <p>No Nível 1, cada aluno recebe uma <strong>carteirinha de participação</strong> que acompanha toda
+                        a jornada. O curso evolui do <em>primeiro contato com o computador</em> (7º), passando por
+                        <em>organização, e-mail e criação web</em> (8º), até chegar em <em>Pacote Office, Python e
+                            inteligência artificial</em> (9º).</p>
+                    <p>O diferencial é a inclusão de <strong>pensamento computacional</strong> em todos os níveis:
+                        lógica visual no 7º, HTML/CSS no 8º e Python no 9º. O aluno termina o curso não apenas usando
+                        tecnologia — mas <strong>entendendo como ela funciona</strong>.</p>
+                </div>
+                <div class="ressenha-sidebar">
+                    <h4>Diferenciais do Curso</h4>
+                    <ul>
+                        <li>Progressão por níveis (7º → 8º → 9º)</li>
+                        <li>50% do tempo dedicado à prática</li>
+                        <li>Infográficos impressos por atividade</li>
+                        <li>Perguntas de verificação por nível</li>
+                        <li>Carteirinha de participação (Nível 1)</li>
+                        <li>Lógica de programação com Scratch</li>
+                        <li>HTML e CSS para criar sites reais</li>
+                        <li>Python para programação do zero</li>
+                        <li>Inteligência Artificial e engenharia de prompts</li>
+                        <li>Segurança digital e cidadania online</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRILHA DE APRENDIZADO -->
+    <section class="trilha" id="trilha">
+        <div class="section-inner">
+            <div class="section-label">Trilha de Aprendizado</div>
+            <h2 class="section-title">3 anos, 1 jornada completa</h2>
+            <p class="section-subtitle">Cada nível constrói sobre o anterior. O aluno evolui de usuário iniciante a
+                criador de tecnologia.</p>
+
+            <div class="trilha-timeline">
+                <div class="trilha-level">
+                    <div class="trilha-dot">7º</div>
+                    <h3>Fundamentos Digitais</h3>
+                    <p class="sub">6 aulas — Computador, arquivos, internet segura, lógica e Scratch</p>
+                    <div class="trilha-tags">
+                        <span class="trilha-tag">Hardware</span>
+                        <span class="trilha-tag">Arquivos</span>
+                        <span class="trilha-tag">Internet</span>
+                        <span class="trilha-tag">Lógica</span>
+                        <span class="trilha-tag">Scratch</span>
+                    </div>
+                </div>
+                <div class="trilha-level">
+                    <div class="trilha-dot">8º</div>
+                    <h3>Autonomia e Web</h3>
+                    <p class="sub">6 aulas — Organização, e-mail, comunicação, pesquisa, HTML e CSS</p>
+                    <div class="trilha-tags">
+                        <span class="trilha-tag">Pastas</span>
+                        <span class="trilha-tag">E-mail</span>
+                        <span class="trilha-tag">Pesquisa</span>
+                        <span class="trilha-tag">HTML</span>
+                        <span class="trilha-tag">CSS</span>
+                        <span class="trilha-tag">Site Pessoal</span>
+                    </div>
+                </div>
+                <div class="trilha-level">
+                    <div class="trilha-dot">9º</div>
+                    <h3>Produtividade e Código</h3>
+                    <p class="sub">6 aulas — Word, Excel, PowerPoint, Python e IA/Prompts</p>
+                    <div class="trilha-tags">
+                        <span class="trilha-tag">Word</span>
+                        <span class="trilha-tag">Excel</span>
+                        <span class="trilha-tag">PowerPoint</span>
+                        <span class="trilha-tag">Python</span>
+                        <span class="trilha-tag">IA</span>
+                        <span class="trilha-tag">Prompts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURSOS -->
+    <section class="cursos" id="cursos">
+        <div class="section-inner">
+            <div class="section-label">Estrutura Completa</div>
+            <h2 class="section-title">18 aulas, 3 níveis, do zero ao código</h2>
+            <p class="section-subtitle">Clique em cada aula para ver os conteúdos teóricos e práticos.</p>
+
+            <div class="curso-tabs">
+                <button class="curso-tab active" onclick="showCurso(0)">
+                    <span class="tab-dot"></span> 7º Ano — Fundamentos <span class="tab-count">6 aulas</span>
+                </button>
+                <button class="curso-tab" onclick="showCurso(1)">
+                    <span class="tab-dot"></span> 8º Ano — Autonomia <span class="tab-count">6 aulas</span>
+                </button>
+                <button class="curso-tab" onclick="showCurso(2)">
+                    <span class="tab-dot"></span> 9º Ano — Produtividade <span class="tab-count">6 aulas</span>
+                </button>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- CURSO 1 — 7º ANO -->
+            <!-- ============================================================ -->
+            <div class="curso-content active" id="curso-0">
+                <div class="curso-header level1">
+                    <div>
+                        <span class="level-badge">CURSO 1 — 7º ANO</span>
+                        <h3>Fundamentos Digitais + Lógica de Programação</h3>
+                        <p>Primeiro contato com o computador, segurança na internet, confiança no uso e primeiros passos
+                            em pensamento computacional.</p>
+                    </div>
+                </div>
+
+                <!-- Seção: Computador e Arquivos -->
+                <div class="curso-section-title level1">
+                    <div class="sec-icon">🖥️</div>
+                    <div>
+                        <h4>Conhecendo o Computador</h4><span>Aulas 1 a 3 — Hardware, sistema e arquivos</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">1</div>
+                        <div class="aula-title">
+                            <h4>Conhecendo o Computador</h4>
+                            <span>45 min — Hardware, ligar/desligar, mouse e teclado</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é um notebook: partes principais (monitor, teclado, mouse, cabo de
+                                        energia)</li>
+                                    <li>Como ligar e desligar corretamente (menu Iniciar → Desligar)</li>
+                                    <li>O que é o modo inativo/suspensão e quando usar</li>
+                                    <li>Como segurar e usar o mouse (clique, duplo clique, arrastar)</li>
+                                    <li>Como usar o teclado (teclas principais, letras, números, espaço, Enter)</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Ligar e desligar o computador corretamente, com supervisão. Identificar cada parte do
+                                    notebook e praticar cliques e movimentação do mouse.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">2</div>
+                        <div class="aula-title">
+                            <h4>Primeiros Passos na Tela</h4>
+                            <span>45 min — Área de trabalho, ícones, janelas e atalhos</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é a área de trabalho (ícones, barra de tarefas, menu Iniciar)</li>
+                                    <li>Como abrir um programa (clicar duas vezes no ícone)</li>
+                                    <li>Como fechar um programa (X no canto)</li>
+                                    <li>O que é uma janela e como mover/redimensionar</li>
+                                    <li>Principais teclas de atalho no Windows</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Abrir e fechar programas, identificar ícones na área de trabalho, movimentar e
+                                    redimensionar janelas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">3</div>
+                        <div class="aula-title">
+                            <h4>Meus Primeiros Arquivos</h4>
+                            <span>45 min — Criar, salvar, localizar, excluir e restaurar</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é um arquivo e o que é uma pasta</li>
+                                    <li>Como criar um arquivo simples (ex.: bloco de notas)</li>
+                                    <li>Como salvar um arquivo (Ctrl+S) e escolher onde salvar</li>
+                                    <li>Como abrir um arquivo já salvo e localizar arquivos</li>
+                                    <li>Exclusão e restauração de arquivos</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar, salvar e reabrir um arquivo de texto simples. Localizar o arquivo salvo.
+                                    Excluir e restaurar um arquivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: Internet Segura -->
+                <div class="curso-section-title level1">
+                    <div class="sec-icon">🔒</div>
+                    <div>
+                        <h4>Internet com Segurança</h4><span>Aula 4 — Navegação responsável e cidadania digital</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">4</div>
+                        <div class="aula-title">
+                            <h4>Navegando com Segurança na Internet</h4>
+                            <span>45 min — Navegadores, busca, senhas, golpes e privacidade</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é um navegador e como usar (Chrome/Edge)</li>
+                                    <li>Como fazer uma pesquisa no Google com eficiência</li>
+                                    <li>Diferença entre sites confiáveis e não confiáveis (HTTPS, domínio)</li>
+                                    <li>Como criar senhas fortes e protegê-las</li>
+                                    <li>Principais golpes online: phishing, links suspeitos, ofertas falsas</li>
+                                    <li>Privacidade: o que nunca compartilhar online (dados pessoais, endereço, escola)
+                                    </li>
+                                    <li>Cyberbullying: o que é, como identificar e como pedir ajuda</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Pesquisar um tema escolar no Google, identificar se um site é confiável, criar uma
+                                    senha forte (sem usar dados reais) e mapear os dados que nunca devem ser
+                                    compartilhados online.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: Programação -->
+                <div class="curso-section-title level1">
+                    <div class="sec-icon">🧩</div>
+                    <div>
+                        <h4>Lógica de Programação</h4><span>Aulas 5 e 6 — Algoritmos, pensamento computacional e
+                            Scratch</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">5</div>
+                        <div class="aula-title">
+                            <h4>O que é Pensar como um Computador</h4>
+                            <span>45 min — Algoritmos, sequências, lógica e decomposição de problemas</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é um algoritmo (sequência de passos para resolver um problema)</li>
+                                    <li>Exemplos do dia a dia: receita de bolo, montar um Lego, trajeto até a escola
+                                    </li>
+                                    <li>Decomposição: dividir um problema grande em partes menores</li>
+                                    <li>Reconhecimento de padrões: encontrar semelhanças entre problemas</li>
+                                    <li>Abstração: ignorar detalhes que não importam</li>
+                                    <li>Introdução a fluxogramas simples (início → passo → decisão → fim)</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Escrever um algoritmo em linguagem natural para uma tarefa do dia a dia (ex.: "como
+                                    escovar os dentes" ou "como atravessar a rua"). Desenhar um fluxograma simples no
+                                    papel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">6</div>
+                        <div class="aula-title">
+                            <h4>Meu Primeiro Programa com Scratch</h4>
+                            <span>45 min — Programação visual por blocos, loops e eventos</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é o Scratch: programação por blocos coloridos (scratch.mit.edu)</li>
+                                    <li>Conhecendo a interface: palco, sprites, área de blocos</li>
+                                    <li>Blocos de movimento: mover, girar, ir para posição</li>
+                                    <li>Blocos de aparência: dizer, mudar fantasia, tamanho</li>
+                                    <li>Blocos de controle: quando clicar, repita, se...então</li>
+                                    <li>Conceito de loop (repetição) e evento (gatilho)</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar um programa no Scratch onde um personagem anda pela tela, fala algo ao ser
+                                    clicado e faz uma animação simples com loop. O aluno sai com um mini-projeto
+                                    funcionando.</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment">// Exemplo de programa Scratch (representação em blocos)</span>
+
+<span class="keyword">quando</span> 🏴 <span class="string">bandeira verde clicada</span>
+  <span class="keyword">diga</span> <span class="string">"Olá, eu sou seu programa!"</span> <span class="keyword">por</span> <span class="value">2</span> segundos
+  <span class="keyword">repita</span> <span class="value">10</span> vezes:
+    <span class="keyword">mova</span> <span class="value">10</span> passos
+    <span class="keyword">gire</span> <span class="value">15</span> graus</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- CURSO 2 — 8º ANO -->
+            <!-- ============================================================ -->
+            <div class="curso-content" id="curso-1">
+                <div class="curso-header level2">
+                    <div>
+                        <span class="level-badge">CURSO 2 — 8º ANO</span>
+                        <h3>Autonomia Digital e Criação Web</h3>
+                        <p>Organização digital, comunicação por e-mail, uso independente do computador e criação de
+                            páginas web com HTML e CSS.</p>
+                    </div>
+                </div>
+
+                <!-- Seção: Organização -->
+                <div class="curso-section-title level2">
+                    <div class="sec-icon">📁</div>
+                    <div>
+                        <h4>Organização Digital</h4><span>Aula 1 — Pastas, mover, copiar, renomear</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">1</div>
+                        <div class="aula-title">
+                            <h4>Organizando Meus Arquivos</h4>
+                            <span>45 min — Pastas, mover, copiar, recortar e renomear</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Revisão rápida: ligar/desligar e abrir programas (5 min)</li>
+                                    <li>O que é uma pasta e como criar pastas organizadas</li>
+                                    <li>Como salvar um arquivo dentro de uma pasta específica</li>
+                                    <li>Como mover e copiar arquivos entre pastas</li>
+                                    <li>Diferença entre recortar e copiar um documento</li>
+                                    <li>Como renomear arquivos e pastas</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar uma estrutura de pastas ("Meus Documentos" → "Escola" → "Matérias") e salvar
+                                    arquivos em cada uma. Mover, copiar e renomear arquivos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: E-mail -->
+                <div class="curso-section-title level2">
+                    <div class="sec-icon">📧</div>
+                    <div>
+                        <h4>Comunicação por E-mail</h4><span>Aulas 2 e 3 — Outlook, etiqueta digital e
+                            responsabilidade</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">2</div>
+                        <div class="aula-title">
+                            <h4>Meu Primeiro E-mail (Outlook)</h4>
+                            <span>45 min — Login, escrever, enviar, anexar, excluir e recuperar</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é um e-mail e para que serve</li>
+                                    <li>Como fazer login na conta (usuário e senha)</li>
+                                    <li>Como escrever um e-mail (para, assunto, corpo do texto)</li>
+                                    <li>Como enviar um e-mail</li>
+                                    <li>Como anexar um arquivo ao e-mail</li>
+                                    <li>Como excluir e recuperar um e-mail</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Escrever e enviar um e-mail simples para o professor, com um arquivo anexado. Excluir
+                                    um e-mail de teste e recuperá-lo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">3</div>
+                        <div class="aula-title">
+                            <h4>Comunicação Digital Responsável</h4>
+                            <span>45 min — Responder, encaminhar, etiqueta digital e anexos</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Como abrir e responder um e-mail recebido</li>
+                                    <li>Boas práticas de etiqueta digital (assunto claro, saudação, despedida)</li>
+                                    <li>Como encaminhar um e-mail</li>
+                                    <li>Como salvar um anexo recebido na pasta correta</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Responder a um e-mail do professor seguindo a etiqueta digital e salvar o anexo na
+                                    pasta correta da estrutura criada na Aula 1.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: Pesquisa -->
+                <div class="curso-section-title level2">
+                    <div class="sec-icon">🔍</div>
+                    <div>
+                        <h4>Pesquisa e Cidadania Digital</h4><span>Aula 4 — Pesquisa avançada, fontes confiáveis e uso
+                            ético</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">4</div>
+                        <div class="aula-title">
+                            <h4>Pesquisando como um Profissional</h4>
+                            <span>45 min — Google avançado, fontes confiáveis, plágio e citação</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Truques de pesquisa no Google (aspas, site:, filetype:)</li>
+                                    <li>Como identificar fontes confiáveis (domínios .gov, .edu, autores reconhecidos)
+                                    </li>
+                                    <li>Diferença entre notícia, opinião e publicidade</li>
+                                    <li>O que é plágio e por que é um problema</li>
+                                    <li>Como citar fontes corretamente em trabalhos escolares</li>
+                                    <li>Licenças de uso: o que pode e não pode usar de internet</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Pesquisar um tema usando técnicas avançadas no Google, encontrar 3 fontes confiáveis,
+                                    e escrever um parágrafo citando as fontes corretamente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: HTML/CSS -->
+                <div class="curso-section-title level2">
+                    <div class="sec-icon">🌐</div>
+                    <div>
+                        <h4>Criando na Web: HTML e CSS</h4><span>Aulas 5 e 6 — Primeira página web e site pessoal</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">5</div>
+                        <div class="aula-title">
+                            <h4>Minha Primeira Página Web (HTML + CSS)</h4>
+                            <span>45 min — Estrutura HTML, tags, texto, listas, cores e estilos</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é HTML: a linguagem que cria páginas da internet</li>
+                                    <li>Estrutura básica: &lt;html&gt;, &lt;head&gt;, &lt;body&gt;</li>
+                                    <li>Tags de texto: &lt;h1&gt;, &lt;h2&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;
+                                    </li>
+                                    <li>Listas: &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</li>
+                                    <li>Links e imagens: &lt;a&gt;, &lt;img&gt;</li>
+                                    <li>O que é CSS: a linguagem que dá estilo (cores, fontes, tamanhos)</li>
+                                    <li>CSS inline vs. tag &lt;style&gt;</li>
+                                    <li>Propriedades básicas: color, background, font-size, text-align</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar uma página HTML do zero com título, parágrafos sobre si mesmo, uma lista de
+                                    hobbies, uma imagem e estilos CSS (cor de fundo, fonte, cores).</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment">&lt;!-- Minha primeira página web! --&gt;</span>
+<span class="tag-name">&lt;!DOCTYPE html&gt;</span>
+<span class="tag-name">&lt;html</span> <span class="attr">lang</span>=<span class="value">"pt-BR"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;head&gt;</span>
+  <span class="tag-name">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag-name">&gt;</span>
+  <span class="tag-name">&lt;title&gt;</span>Minha Página<span class="tag-name">&lt;/title&gt;</span>
+  <span class="tag-name">&lt;style&gt;</span>
+    <span class="keyword">body</span> {
+      <span class="attr">background-color</span>: <span class="value">#f0f8ff</span>;
+      <span class="attr">font-family</span>: <span class="value">Arial, sans-serif</span>;
+      <span class="attr">color</span>: <span class="value">#333</span>;
+      <span class="attr">max-width</span>: <span class="value">600px</span>;
+      <span class="attr">margin</span>: <span class="value">0 auto</span>;
+      <span class="attr">padding</span>: <span class="value">20px</span>;
+    }
+    <span class="keyword">h1</span> { <span class="attr">color</span>: <span class="value">#2563EB</span>; }
+    <span class="keyword">.hobby</span> { <span class="attr">color</span>: <span class="value">#10B981</span>; <span class="attr">font-weight</span>: <span class="value">bold</span>; }
+  <span class="tag-name">&lt;/style&gt;</span>
+<span class="tag-name">&lt;/head&gt;</span>
+<span class="tag-name">&lt;body&gt;</span>
+  <span class="tag-name">&lt;h1&gt;</span>Olá, eu sou o Gustavo!<span class="tag-name">&lt;/h1&gt;</span>
+  <span class="tag-name">&lt;p&gt;</span>Tenho 13 anos e estou aprendendo HTML.<span class="tag-name">&lt;/p&gt;</span>
+  <span class="tag-name">&lt;h2&gt;</span>Meus hobbies:<span class="tag-name">&lt;/h2&gt;</span>
+  <span class="tag-name">&lt;ul&gt;</span>
+    <span class="tag-name">&lt;li</span> <span class="attr">class</span>=<span class="value">"hobby"</span><span class="tag-name">&gt;</span>Jogar futebol<span class="tag-name">&lt;/li&gt;</span>
+    <span class="tag-name">&lt;li</span> <span class="attr">class</span>=<span class="value">"hobby"</span><span class="tag-name">&gt;</span>Ler mangás<span class="tag-name">&lt;/li&gt;</span>
+    <span class="tag-name">&lt;li</span> <span class="attr">class</span>=<span class="value">"hobby"</span><span class="tag-name">&gt;</span>Programar<span class="tag-name">&lt;/li&gt;</span>
+  <span class="tag-name">&lt;/ul&gt;</span>
+<span class="tag-name">&lt;/body&gt;</span>
+<span class="tag-name">&lt;/html&gt;</span></code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">6</div>
+                        <div class="aula-title">
+                            <h4>Criando Meu Site Pessoal</h4>
+                            <span>45 min — Projeto completo: site com múltiplas seções, tabela e formulário</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Revisão e aprimoramento da página da aula anterior</li>
+                                    <li>Adicionando seções com &lt;div&gt; e &lt;section&gt;</li>
+                                    <li>Tabelas em HTML: &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;</li>
+                                    <li>Formulários básicos: &lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;,
+                                        &lt;button&gt;</li>
+                                    <li>CSS: bordas, margens, padding, border-radius</li>
+                                    <li>CSS: hover e transições simples</li>
+                                    <li>Como abrir o arquivo HTML no navegador e testar</li>
+                                    <li>Onde hospedar sites grátis (GitHub Pages, Netlify)</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Expandir a página pessoal em um site com: seção "Sobre mim" com foto, tabela de notas
+                                    escolares, lista de matérias favoritas com links, e um formulário de contato
+                                    simples. Abrir no navegador para ver o resultado final.</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment">&lt;!-- Tabela de notas --&gt;</span>
+<span class="tag-name">&lt;table</span> <span class="attr">border</span>=<span class="value">"1"</span><span class="tag-name">&gt;</span>
+  <span class="tag-name">&lt;tr&gt;</span>
+    <span class="tag-name">&lt;th&gt;</span>Matéria<span class="tag-name">&lt;/th&gt;</span>
+    <span class="tag-name">&lt;th&gt;</span>Nota<span class="tag-name">&lt;/th&gt;</span>
+    <span class="tag-name">&lt;th&gt;</span>Status<span class="tag-name">&lt;/th&gt;</span>
+  <span class="tag-name">&lt;/tr&gt;</span>
+  <span class="tag-name">&lt;tr&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>Matemática<span class="tag-name">&lt;/td&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>8.5<span class="tag-name">&lt;/td&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>Aprovado<span class="tag-name">&lt;/td&gt;</span>
+  <span class="tag-name">&lt;/tr&gt;</span>
+  <span class="tag-name">&lt;tr&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>Português<span class="tag-name">&lt;/td&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>9.0<span class="tag-name">&lt;/td&gt;</span>
+    <span class="tag-name">&lt;td&gt;</span>Aprovado<span class="tag-name">&lt;/td&gt;</span>
+  <span class="tag-name">&lt;/tr&gt;</span>
+<span class="tag-name">&lt;/table&gt;</span>
+
+<span class="comment">&lt;!-- Formulário de contato --&gt;</span>
+<span class="tag-name">&lt;form&gt;</span>
+  <span class="tag-name">&lt;label&gt;</span>Seu nome:<span class="tag-name">&lt;/label&gt;</span>
+  <span class="tag-name">&lt;input</span> <span class="attr">type</span>=<span class="value">"text"</span> <span class="attr">placeholder</span>=<span class="value">"Digite seu nome"</span><span class="tag-name">&gt;</span>
+  <span class="tag-name">&lt;label&gt;</span>Mensagem:<span class="tag-name">&lt;/label&gt;</span>
+  <span class="tag-name">&lt;textarea</span> <span class="attr">placeholder</span>=<span class="value">"Escreva aqui..."</span><span class="tag-name">&gt;&lt;/textarea&gt;</span>
+  <span class="tag-name">&lt;button</span> <span class="attr">type</span>=<span class="value">"submit"</span><span class="tag-name">&gt;</span>Enviar<span class="tag-name">&lt;/button&gt;</span>
+<span class="tag-name">&lt;/form&gt;</span></code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- CURSO 3 — 9º ANO -->
+            <!-- ============================================================ -->
+            <div class="curso-content" id="curso-2">
+                <div class="curso-header level3">
+                    <div>
+                        <span class="level-badge">CURSO 3 — 9º ANO</span>
+                        <h3>Produtividade, Python e Inteligência Artificial</h3>
+                        <p>Uso prático de Word, Excel e PowerPoint para tarefas escolares reais, programação em Python
+                            do zero e introdução ao mundo da IA e prompts.</p>
+                    </div>
+                </div>
+
+                <!-- Seção: Pacote Office -->
+                <div class="curso-section-title level3">
+                    <div class="sec-icon">📝</div>
+                    <div>
+                        <h4>Pacote Office</h4><span>Aulas 1 a 3 — Word, Excel e PowerPoint</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">1</div>
+                        <div class="aula-title">
+                            <h4>Word: Escrevendo Trabalhos</h4>
+                            <span>45 min — Digitar, formatar, salvar, PDF e conversão</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Abrir o Word e reconhecer a tela (faixa de opções, área de digitação)</li>
+                                    <li>Digitar um texto simples</li>
+                                    <li>Formatar texto: negrito, itálico, sublinhado, tamanho da fonte</li>
+                                    <li>Salvar e abrir um documento Word</li>
+                                    <li>O que é um PDF — Diferença entre arquivo Word e PDF</li>
+                                    <li>Como converter um arquivo Word em PDF</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Digitar e formatar um pequeno texto (ex.: um parágrafo sobre si mesmo). Salvar como
+                                    Word e exportar como PDF.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">2</div>
+                        <div class="aula-title">
+                            <h4>Excel: Organizando Dados</h4>
+                            <span>45 min — Planilhas, células, dados e soma simples</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Abrir o Excel e entender o que é uma planilha (células, linhas, colunas)</li>
+                                    <li>Digitar dados em células (nomes, números)</li>
+                                    <li>Fazer uma soma simples (ex.: somar notas)</li>
+                                    <li>Salvar e abrir uma planilha</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar uma tabela simples (ex.: lista de matérias com notas) e somar os valores usando
+                                    fórmula de soma.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">3</div>
+                        <div class="aula-title">
+                            <h4>PowerPoint: Criando Apresentações</h4>
+                            <span>45 min — Slides, textos, imagens e apresentações completas</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Abrir o PowerPoint e entender a estrutura de slides</li>
+                                    <li>Criar um slide com título e texto</li>
+                                    <li>Inserir uma imagem em um slide</li>
+                                    <li>Salvar e abrir uma apresentação</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar uma apresentação de 3 slides sobre um tema simples (ex.: "Quem sou eu"),
+                                    incluindo texto e imagens.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: Python -->
+                <div class="curso-section-title level3">
+                    <div class="sec-icon">🐍</div>
+                    <div>
+                        <h4>Programação com Python</h4><span>Aulas 4 e 5 — Variáveis, condicionais, loops e
+                            projetos</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">4</div>
+                        <div class="aula-title">
+                            <h4>Introdução ao Python</h4>
+                            <span>45 min — Variáveis, print, input, tipos de dados e operações</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é Python e por que é a linguagem mais popular do mundo</li>
+                                    <li>Onde escrever código Python (IDLE, Replit, Google Colab)</li>
+                                    <li>Seu primeiro programa: print("Olá, mundo!")</li>
+                                    <li>Variáveis: guardando informações (nome, idade, nota)</li>
+                                    <li>Tipos de dados: texto (str), número (int, float), verdadeiro/falso (bool)</li>
+                                    <li>Entrada de dados: input() — pedindo informação ao usuário</li>
+                                    <li>Operações matemáticas: +, -, *, /</li>
+                                    <li>Concatenação de texto com variáveis</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Criar um programa que pede o nome e a idade do usuário, calcula o ano de nascimento,
+                                    e exibe uma mensagem personalizada. Ex.: "Olá, Gustavo! Você nasceu em 2012."</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment"># Meu primeiro programa em Python!</span>
+
+<span class="prompt-label">nome</span> = <span class="keyword">input</span>(<span class="string">"Qual é o seu nome? "</span>)
+<span class="prompt-label">idade</span> = <span class="keyword">int</span>(<span class="keyword">input</span>(<span class="string">"Qual é a sua idade? "</span>))
+<span class="prompt-label">ano</span> = <span class="value">2025</span> - idade
+
+<span class="keyword">print</span>(<span class="string">f"Olá, </span>{nome}<span class="string">! Você nasceu em </span>{ano}<span class="string">."</span>)
+<span class="keyword">print</span>(<span class="string">f"Daqui 5 anos você terá </span>{idade + <span class="value">5</span>}<span class="string"> anos!"</span>)</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">5</div>
+                        <div class="aula-title">
+                            <h4>Python na Prática: Condicionais e Loops</h4>
+                            <span>45 min — if/else, while, listas e mini-projetos</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>Condicionais: if, elif, else — fazendo o programa decidir</li>
+                                    <li>Operadores de comparação: ==, !=, &gt;, &lt;, &gt;=, &lt;=</li>
+                                    <li>Loops: while (repita enquanto) e for (para cada)</li>
+                                    <li>Listas: guardando vários valores em uma variável</li>
+                                    <li>Len(), append() — manipulando listas</li>
+                                    <li>Combinando tudo: programa que usa variáveis + condicionais + loops</li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade pratica</h5>
+                                <p>Criar um programa de "quiz escolar": o programa faz 5 perguntas de múltipla escolha,
+                                    conta os acertos, e dá uma nota final com mensagem personalizada
+                                    (aprovado/recuperação/reprovado).</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment"># Quiz escolar em Python!</span>
+
+<span class="prompt-label">acertos</span> = <span class="value">0</span>
+
+<span class="keyword">print</span>(<span class="string">"=== QUIZ DE CIÊNCIAS ==="</span>)
+
+<span class="comment"># Pergunta 1</span>
+<span class="keyword">print</span>(<span class="string">"\n1. Qual é o maior planeta do Sistema Solar?"</span>)
+<span class="keyword">print</span>(<span class="string">"a) Terra  b) Júpiter  c) Saturno"</span>)
+<span class="prompt-label">r1</span> = <span class="keyword">input</span>(<span class="string">"Sua resposta: "</span>)
+<span class="keyword">if</span> r1 == <span class="string">"b"</span>:
+    <span class="keyword">print</span>(<span class="string">"Correto!"</span>)
+    acertos += <span class="value">1</span>
+<span class="keyword">else</span>:
+    <span class="keyword">print</span>(<span class="string">"Errou! Era Júpiter."</span>)
+
+<span class="comment"># Pergunta 2</span>
+<span class="keyword">print</span>(<span class="string">"\n2. Qual gás as plantas produzem?"</span>)
+<span class="keyword">print</span>(<span class="string">"a) Oxigênio  b) Nitrogênio  c) Hélio"</span>)
+<span class="prompt-label">r2</span> = <span class="keyword">input</span>(<span class="string">"Sua resposta: "</span>)
+<span class="keyword">if</span> r2 == <span class="string">"a"</span>:
+    <span class="keyword">print</span>(<span class="string">"Correto!"</span>)
+    acertos += <span class="value">1</span>
+<span class="keyword">else</span>:
+    <span class="keyword">print</span>(<span class="string">"Errou! Era Oxigênio."</span>)
+
+<span class="comment"># Resultado</span>
+<span class="keyword">print</span>(<span class="string">f"\n=== RESULTADO: </span>{acertos}<span class="string">/2 acertos ==="</span>)
+<span class="keyword">if</span> acertos == <span class="value">2</span>:
+    <span class="keyword">print</span>(<span class="string">"Parabéns, você acertou tudo!"</span>)
+<span class="keyword">elif</span> acertos == <span class="value">1</span>:
+    <span class="keyword">print</span>(<span class="string">"Bom trabalho! Estude mais um pouco."</span>)
+<span class="keyword">else</span>:
+    <span class="keyword">print</span>(<span class="string">"Revise o conteúdo e tente novamente!"</span>)</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção: IA e Prompts -->
+                <div class="curso-section-title level3">
+                    <div class="sec-icon">🤖</div>
+                    <div>
+                        <h4>Inteligência Artificial e Prompts</h4><span>Aula 6 — Como funciona a IA, engenharia de
+                            prompt e uso responsável</span>
+                    </div>
+                </div>
+
+                <div class="aula" onclick="toggleAula(this)">
+                    <div class="aula-header">
+                        <div class="aula-num">6</div>
+                        <div class="aula-title">
+                            <h4>IA na Prática: Como Usar Prompts</h4>
+                            <span>45 min — O que é IA, como funcionam os prompts, boas práticas e ética</span>
+                            <div class="aula-tags"><span class="aula-tag teoria">Teoria</span><span
+                                    class="aula-tag pratica">Prática</span><span class="aula-tag novo">Novo</span></div>
+                        </div>
+                        <div class="aula-toggle">▾</div>
+                    </div>
+                    <div class="aula-body">
+                        <div class="aula-body-inner">
+                            <div class="aula-topics">
+                                <h5>Orientação Teórica</h5>
+                                <ul>
+                                    <li>O que é Inteligência Artificial e como ela funciona (de forma simples)</li>
+                                    <li>O que é um "prompt": a instrução que você dá para a IA</li>
+                                    <li>Ferramentas de IA: ChatGPT, Gemini, Copilot — o que são e quando usar</li>
+                                    <li>Anatomia de um bom prompt: contexto + tarefa + formato + restrições</li>
+                                    <li>Técnicas: dar exemplos, pedir passo a passo, definir o papel da IA</li>
+                                    <li>Prompt ruim vs. prompt bom — comparação prática</li>
+                                    <li>Limitações da IA: ela pode errar, inventar dados e ter viés</li>
+                                    <li>Uso ético: IA como ferramenta de apoio, não para substituir o aprendizado</li>
+                                    <li>Quando usar IA e quando não usar (provas, trabalhos que exigem reflexão própria)
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="aula-pratica">
+                                <h5>🎯 Atividade Prática</h5>
+                                <p>Experimentar prompts de diferentes qualidades na IA e comparar os resultados. Criar
+                                    um prompt estruturado para: (a) ajudar a estudar um tema, (b) resumir um texto, (c)
+                                    criar um roteiro de apresentação. Discutir os limites e perigos de copiar respostas
+                                    da IA sem pensar.</p>
+                            </div>
+                            <div class="aula-code">
+                                <code><span class="comment">// Comparação de prompts</span>
+
+<span class="comment">// ❌ PROMPT RUIM:</span>
+<span class="prompt-label">"Me fala sobre fotossíntese"</span>
+<span class="comment">// → Resposta genérica, sem foco, difícil de usar</span>
+
+<span class="comment">// ✅ PROMPT BOM:</span>
+<span class="prompt-label">"Sou aluno do 9º ano. Explique fotossíntese em 5 passos</span>
+<span class="prompt-label"> simples, como se fosse uma receita. Depois, crie 3</span>
+<span class="prompt-label"> perguntas de teste para eu praticar. Use linguagem</span>
+<span class="prompt-label"> fácil e dê exemplos do dia a dia."</span>
+<span class="comment">// → Resposta focada, adequada ao nível, com exercícios</span>
+
+<span class="comment">// 🏗️ ESTRUTURA DE UM BOM PROMPT:</span>
+<span class="comment">// 1. CONTEXTO:   "Sou aluno do 9º ano"</span>
+<span class="comment">// 2. TAREFA:     "Explique fotossíntese em 5 passos"</span>
+<span class="comment">// 3. FORMATO:    "Como se fosse uma receita"</span>
+<span class="comment">// 4. EXTRAS:     "Crie 3 perguntas de teste"</span>
+<span class="comment">// 5. RESTRIÇÃO:  "Use linguagem fácil e exemplos"</span></code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p><strong>Trilhas Digitais</strong> — Curso de Inclusão Digital e Programação para o Ensino Fundamental II</p>
+        <p style="margin-top: 8px;">Do primeiro clique ao primeiro código. Um passo de cada vez.</p>
+    </footer>
+
+    <script>
+        function showCurso(idx) {
+            document.querySelectorAll('.curso-content').forEach((c, i) => {
+                c.classList.toggle('active', i === idx);
+            });
+            document.querySelectorAll('.curso-tab').forEach((t, i) => {
+                t.classList.toggle('active', i === idx);
+            });
+        }
+
+        function toggleAula(el) {
+            el.classList.toggle('open');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            nav.style.boxShadow = window.scrollY > 50 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+        });
+    </script>
+
+</body>
+
+</html>
